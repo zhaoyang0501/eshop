@@ -5,11 +5,15 @@
 package com.struts.action;
 
 import java.util.*;
+
 import javax.servlet.http.*;
+
 import org.apache.struts.action.*;
+
 import com.ORM.*;
 import com.base.*;
 import com.service.*;
+import com.struts.form.CateForm;
 
 /** 
  * MyEclipse Struts
@@ -127,6 +131,52 @@ public class AdminMemberAction extends BaseAction {
 		}
 		return mapping.findForward("browseNotice");		
 	}
+	
+	public ActionForward noticeAdd(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		Notice notice=new Notice();
+		notice.setContent(request.getParameter("context"));
+		notice.setTitle(request.getParameter("title"));
+		notice.setLeaveDate(new Date());
+		NoticeService service = new NoticeServiceImpl();
+		ActionMessages msgs = new ActionMessages();
+		try{
+			boolean status = service.addNotice(notice);
+			if (status){
+				msgs.add("addCateStatus",new ActionMessage("notice.add.success"));
+			}else{				
+				msgs.add("addCateStatus",new ActionMessage(Constants.ADDCATE_FAIL_KEY));
+			}
+			saveErrors(request, msgs);
+		}catch(Exception ex){
+			logger.info("在执行AdminCateAction类中的addCate方法时出错：\n");
+			ex.printStackTrace();
+		}
+		return mapping.findForward("noticeAdd");
+	}
+	
+	
+	public ActionForward viewWord(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		WordService service = new WordServiceImpl();
+		Leaveword word = null;
+		String p = request.getParameter("id");
+		Integer id = null;
+		if(p!=null){
+			id = new Integer(p);
+		}else{
+			id = new Integer(0);
+		}		
+		try{
+			word = service.loadWord(id);
+			if(word!=null)request.setAttribute("word", word);
+		}catch(Exception ex){
+			logger.info("在执行AdminMemberAction类中的viewWord方法时出错：\n");
+			ex.printStackTrace();
+		}
+		return mapping.findForward("viewWord");		
+	}
+
 	public ActionForward viewNotice(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
 		NoticeService service = new NoticeServiceImpl();

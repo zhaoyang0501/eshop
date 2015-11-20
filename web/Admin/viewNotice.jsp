@@ -53,7 +53,7 @@
       </tr>
   </table>
   <center>
-	<html:link page="/Admin/adminMember.do?method=browseWord">
+	<html:link page="/Admin/adminMember.do?method=browseNotice">
 		<span><bean:message key="return.text"/></span>
 	</html:link>
   </center>

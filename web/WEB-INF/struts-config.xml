@@ -134,6 +134,8 @@
       <forward name="browseNotice" path="/Admin/adminNotice.jsp" />
       <forward name="browseMember" path="/Admin/adminMember.jsp" />
       <forward name="viewWord" path="/Admin/WordInfo.jsp" />
+       <forward name="noticeAdd" path="/Admin/adminAddNotice.jsp" />
+        <forward name="fuck" path="/Admin/viewNotice.jsp" />
       <forward name="viewNotice" path="/Admin/viewNotice.jsp" />
       <forward name="viewMember" path="/Admin/MemberInfo.jsp" />
     </action>  

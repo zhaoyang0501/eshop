@@ -21,9 +21,15 @@
   <body>
 	<table border="0" align="center" cellpadding="0" cellspacing="0" style="background-color:lightgrey; border:0px;">
 	  <tr>
-		<td height="40" class="itemTitle" align="center"><bean:message key="word.manage"/></td>
+		<td height="40" class="itemTitle" align="center">公告管理</td>
 	  </tr>
-	  
+	  <tr>
+		<td height="30" class="blueText" align="center">
+			<html:link page="/Admin/adminAddNotice.jsp">
+					 <span class="blueText">新增公告</span>			
+			</html:link>
+		</td>
+	  </tr>
 	  <tr>
 	    <td height="30" align="center">		
 			<display:table name="wordList" id="row" pagesize="15" export="true" class="displaytag" requestURI="/Admin/adminMember.do?method=browseNotice" >
